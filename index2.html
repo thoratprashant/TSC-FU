@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>TSC-FU</title>
-  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" media="screen" href="./css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet"> -->
@@ -42,10 +42,10 @@
                     style="border-collapse: separate;   width: 100%;" width="100%">
                     <tr>
                       <td valign="top">
-                        <p
+                        <p id="lineOne"
                           style="font-family: 'Titillium Web', sans-serif;; font-size: 16px; font-weight: normal; margin: 0; margin-bottom: 15px; text-align: center; font-weight: 700;">
                           Hi there first line ,</p>
-                        <p
+                        <p id="lineTwo"
                           style="font-family: 'Titillium Web', sans-serif;; font-size: 14px; font-weight: normal; margin: 0; margin-bottom: 15px; text-align: center;">
                           Sometimes you just want to send a simple HTML email with a simple design and clear call to
                           action. This is it.</p>
@@ -61,7 +61,7 @@
                                   <tbody>
                                     <tr>
                                       <td style="text-align: center;">
-                                        <img
+                                        <img 
                                           src="https://s3.amazonaws.com/tf.images/email_templates/Group%202202-269px.png"
                                           alt="">
                                       </td>
@@ -94,10 +94,10 @@
               <table role="presentation" border="0" cellpadding="0" cellspacing="0"
                 style=" border-collapse: separate;   width: 100%;" width="100%">
                 <tr>
-                  <td class="content-block"
+                  <td class="content-block" id="footerChange"
                     style="background-color: rgb(255, 0, 0); font-family: 'Titillium Web', sans-serif;; vertical-align: top; padding-bottom: 10px; padding-top: 10px; color: #fff; font-size: 12px; text-align: center;"
                     valign="top" align="center">
-                    <span class="apple-link" style="color: #fff; font-size: 14px; text-align: center;">Company Inc, 3
+                    <span class="apple-link" id="footerText" style="color: #fff; font-size: 14px; text-align: center;">Company Inc, 3
                       Abbey Road, San Francisco CA 94102</span>
                   </td>
                 </tr>
@@ -136,7 +136,7 @@
                     <label class="col-form-label">Label 1</label>
                   </div>
                   <div class="col-5">
-                    <input type="text" class="form-control" placeholder="label 1">
+                    <input type="text" class="form-control" placeholder="label 1" id="labelOne">
                   </div>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                     <label class="col-form-label">Label 2</label>
                   </div>
                   <div class="col-5">
-                    <input type="text" class="form-control" placeholder="label 2">
+                    <input type="text" class="form-control" placeholder="label 2" id="labelTwo">
                   </div>
                 </div>
               </div>
@@ -171,7 +171,7 @@
                     <label class="col-form-label">Organisation Image <span class="text-danger">*</span></label>
                   </div>
                   <div class="col-5">
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" id="myFile" type="file" id="formFile">
                   </div>
                 </div>
                 <div class="row g-3 align-items-center">
@@ -237,7 +237,7 @@
                     <label class="col-form-label">Footer label</label>
                   </div>
                   <div class="col-5">
-                    <input type="text" class="form-control" placeholder="Enter footer text description">
+                    <input type="text" class="form-control" id="footerLabel" placeholder="Enter footer text description">
                   </div>
                 </div>
               </div>
@@ -247,7 +247,7 @@
                     <label class="col-form-label">Text Color</label>
                   </div>
                   <div class="col-5">
-                    <input type="color" id="colorpicker" value="#ff6666">
+                    <input type="color" id="changeTextColor" value="#ff6666">
                   </div>
                 </div>
               </div>
@@ -257,7 +257,7 @@
                     <label class="col-form-label">Background Color</label>
                   </div>
                   <div class="col-5">
-                    <input type="color" id="colorpicker" value="#ff6666">
+                    <input type="color" id="changeColor" value="#ff6666">
                   </div>
                 </div>
               </div>
@@ -275,7 +275,7 @@
 
 
 
-
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"></script>
@@ -289,6 +289,28 @@
       mywindow.focus();
       mywindow.print();
       return true;
+    });
+    $("#labelOne").keyup(function() { 
+      var text = $(this).val(); 
+      $("#lineOne").text(text);
+    });
+    $("#footerLabel").keyup(function() { 
+      var text = $(this).val(); 
+      $("#footerText").text(text);
+    });
+    $("#myFile").change(function() {
+      var fileName = $(this).val(); 
+      console.log("Selected img path: " + fileName);
+    }); 
+    $("#footerLabel").keyup(function() { 
+      var text = $(this).val(); 
+      $("#lineTwo").text(text);
+    });
+    $("#changeColor").change(function(){ 
+      $("#footerChange").css('background-color', $(this).val());  
+    });
+    $("#changeTextColor").change(function(){ 
+      $("#footerText").css('color', $(this).val());  
     });
   </script>
 </body>

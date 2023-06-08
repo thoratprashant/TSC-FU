@@ -6,3 +6,10 @@
 .note{
     font-size: 14px;
 }
+
+@media print{
+    #footer  { 
+    background-color: rgb(255, 0, 0);
+      -webkit-print-color-adjust: exact !important;
+    }
+  }
